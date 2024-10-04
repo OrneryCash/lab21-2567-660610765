@@ -34,12 +34,14 @@ export default function RootLayout({
     } else {
       //check if token is still valid
       try {
-        const resp = await axios.get("/api/user/checkAuthen", {
+        await axios.get("/api/user/checkAuthen", {
           headers: { Authorization: `Bearer ${token}` },
         });
         $authenStore.set({ token, authenUsername });
       } catch (err) {
-        console.log(err.message);
+        if (err instanceof Error) {
+          console.log(err.message);
+        }
         isTokenValid = false;
       }
     }
@@ -80,8 +82,8 @@ export default function RootLayout({
               </Title>
               {children}
               <Footer
-                studentId="660610999"
-                fullName="Dome Potikanond"
+                studentId="660610765"
+                fullName="Teerapad Pipadboonyarat"
                 year="2024"
               />
             </Container>
